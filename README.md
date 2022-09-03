@@ -1,6 +1,6 @@
 # How to Setup a TypeScript Node.js Project ?
 
-Step by step guide to setup the TypeScript project
+Step by step guide to setup the TypeScript project. 
 
 ## Getting Started
 
@@ -46,4 +46,29 @@ touch src/index.ts
 ```
 console.log("I am running ....");
 ```
-and run `npx tsc` command in the root of the project. This will create `index.js` fine inside build folder.
+and run `npx tsc` command in the root of the project. This will create `index.js` file inside build folder.
+
+### ts-node nodemon (Cold Reloading)
+Install `ts-node nodemon` package  as dev. depandancy. 
+
+```
+npm install --save-dev ts-node nodemon
+```
+
+Also, create `nodemon.json` confing file in root of the project.
+
+```
+{
+    "watch": ["src"],
+    "ext": ".ts,.js",
+    "ignore": [],
+    "exec": "ts-node ./src/index.ts"
+}
+```
+
+Add `"start:dev": "nodemon"` in `package.json` file in script to run and test in dev. env.
+
+Now, you can run `npm run start:dev`  command.
+
+### Production Ready
+Finally, you can add `"start": "npm run build && node build/index.js"` line in `package.json`, So, that you can build and run your project by `npm run start` command
